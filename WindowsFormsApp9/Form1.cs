@@ -55,6 +55,7 @@ namespace NetWorkEquipmentForms
             Label lblDataRate = new Label();
             lblDataRate.Text = "Введите скорость передачи данных:";
             lblDataRate.Location = new System.Drawing.Point(10, 110);
+            lblDataRate.AutoSize = true; 
             inputForm.Controls.Add(lblDataRate);
 
             TextBox txtDataRate = new TextBox();
@@ -70,11 +71,35 @@ namespace NetWorkEquipmentForms
 
             if (inputForm.ShowDialog() == DialogResult.OK)
             {
+                // Проверка на пустые поля и корректность ввода
+                string errorMessage = "";
+
+                if (string.IsNullOrWhiteSpace(txtModel.Text))
+                {
+                    errorMessage += "Модель не может быть пустой.\n";
+                }
+
+                if (!int.TryParse(txtPrice.Text, out int price) || price < 1 || price > 100000)
+                {
+                    errorMessage += "Цена должна быть числом от 1 до 100000.\n";
+                }
+
+                if (!int.TryParse(txtDataRate.Text, out int dataRate) || dataRate < 1 || dataRate > 1000)
+                {
+                    errorMessage += "Скорость передачи данных должна быть числом от 1 до 1000.\n";
+                }
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    MessageBox.Show(errorMessage.Trim());
+                    return; // Выход из метода, если есть ошибки
+                }
+
                 var netWorkEquipment = new NetWorkEquipment
                 {
                     Model = txtModel.Text,
-                    Price = GetValidInt(txtPrice.Text, 1, 100000),
-                    DataRate = GetValidInt(txtDataRate.Text, 1, 1000)
+                    Price = price,
+                    DataRate = dataRate
                 };
                 devices.Add(netWorkEquipment);
                 MessageBox.Show("Сетевое оборудование добавлено.");
@@ -97,7 +122,7 @@ namespace NetWorkEquipmentForms
             inputForm.Controls.Add(txtModel);
 
             Label lblAntennas = new Label();
-            lblAntennas.Text = "Введите количество антенн:";
+            lblAntennas.Text = "Введите антены:";
             lblAntennas.Location = new System.Drawing.Point(10, 60);
             inputForm.Controls.Add(lblAntennas);
 
@@ -115,8 +140,9 @@ namespace NetWorkEquipmentForms
             inputForm.Controls.Add(txtPrice);
 
             Label lblDataRate = new Label();
-            lblDataRate.Text = "Введите скорость передачи данных:";
+            lblDataRate.Text = " Введите скорость передачи данных:";
             lblDataRate.Location = new System.Drawing.Point(10, 160);
+            lblDataRate.AutoSize = true;
             inputForm.Controls.Add(lblDataRate);
 
             TextBox txtDataRate = new TextBox();
@@ -132,12 +158,41 @@ namespace NetWorkEquipmentForms
 
             if (inputForm.ShowDialog() == DialogResult.OK)
             {
+                // Проверка на пустые поля и корректность ввода
+                string errorMessage = "";
+
+                if (string.IsNullOrWhiteSpace(txtModel.Text))
+                {
+                    errorMessage += "Модель не может быть пустой.\n";
+                }
+
+                if (!int.TryParse(txtAntennas.Text, out int antennas) || antennas < 1 || antennas > 10)
+                {
+                    errorMessage += "Количество антенн должно быть числом от 1 до 10.\n";
+                }
+
+                if (!int.TryParse(txtPrice.Text, out int price) || price < 1 || price > 100000)
+                {
+                    errorMessage += "Цена должна быть числом от 1 до 100000.\n";
+                }
+
+                if (!int.TryParse(txtDataRate.Text, out int dataRate) || dataRate < 1 || dataRate > 1000)
+                {
+                    errorMessage += "Скорость передачи данных должна быть числом от 1 до 1000.\n";
+                }
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    MessageBox.Show(errorMessage.Trim());
+                    return; // Выход из метода, если есть ошибки
+                }
+
                 var wifiRouter = new Wifi_Router
                 {
                     Model = txtModel.Text,
-                    Antennas = GetValidInt(txtAntennas.Text, 1, 10),
-                    Price = GetValidInt(txtPrice.Text, 1, 100000),
-                    DataRate = GetValidInt(txtDataRate.Text, 1, 1000)
+                    Antennas = antennas,
+                    Price = price,
+                    DataRate = dataRate
                 };
                 devices.Add(wifiRouter);
                 MessageBox.Show("Wi-Fi маршрутизатор добавлен.");
@@ -160,7 +215,7 @@ namespace NetWorkEquipmentForms
             inputForm.Controls.Add(txtModel);
 
             Label lblPorts = new Label();
-            lblPorts.Text = "Введите количество портов:";
+            lblPorts.Text = "Введите порты:";
             lblPorts.Location = new System.Drawing.Point(10, 60);
             inputForm.Controls.Add(lblPorts);
 
@@ -180,6 +235,7 @@ namespace NetWorkEquipmentForms
             Label lblDataRate = new Label();
             lblDataRate.Text = "Введите скорость передачи данных:";
             lblDataRate.Location = new System.Drawing.Point(10, 160);
+            lblDataRate.AutoSize = true;
             inputForm.Controls.Add(lblDataRate);
 
             TextBox txtDataRate = new TextBox();
@@ -195,12 +251,41 @@ namespace NetWorkEquipmentForms
 
             if (inputForm.ShowDialog() == DialogResult.OK)
             {
+                // Проверка на пустые поля и корректность ввода
+                string errorMessage = "";
+
+                if (string.IsNullOrWhiteSpace(txtModel.Text))
+                {
+                    errorMessage += "Модель не может быть пустой.\n";
+                }
+
+                if (!int.TryParse(txtPorts.Text, out int ports) || ports < 1 || ports > 10)
+                {
+                    errorMessage += "Количество портов должно быть числом от 1 до 10.\n";
+                }
+
+                if (!int.TryParse(txtPrice.Text, out int price) || price < 1 || price > 100000)
+                {
+                    errorMessage += "Цена должна быть числом от 1 до 100000.\n";
+                }
+
+                if (!int.TryParse(txtDataRate.Text, out int dataRate) || dataRate < 1 || dataRate > 1000)
+                {
+                    errorMessage += "Скорость передачи данных должна быть числом от 1 до 1000.\n";
+                }
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    MessageBox.Show(errorMessage.Trim());
+                    return; // Выход из метода, если есть ошибки
+                }
+
                 var switcher = new Switcher
                 {
                     Model = txtModel.Text,
-                    Ports = GetValidInt(txtPorts.Text, 1, 10),
-                    Price = GetValidInt(txtPrice.Text, 1, 100000),
-                    DataRate = GetValidInt(txtDataRate.Text, 1, 1000)
+                    Ports = ports,
+                    Price = price,
+                    DataRate = dataRate
                 };
                 devices.Add(switcher);
                 MessageBox.Show("Свитч добавлен.");

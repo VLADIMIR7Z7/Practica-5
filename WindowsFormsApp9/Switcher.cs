@@ -2,23 +2,11 @@
 {
     public class Switcher : NetWorkEquipment
     {
-        private int ports;
-
-        public int Ports
-        {
-            get { return ports; }
-            set
-            {
-                if (value > 0 && value <= 10)
-                    ports = value;
-                else
-                    ports = 0;
-            }
-        }
+        public int Ports { get; set; }
 
         public override string ToString()
         {
-            return base.ToString() + $"\nКоличество портов: {Ports}";
+            return $"Свитч: Модель = {Model}, Порты = {Ports}, Цена = {Price}, Скорость передачи данных = {DataRate}";
         }
     }
 }
